@@ -1,12 +1,40 @@
 from django.shortcuts import render
-from rest_framework.views import APIView
+# from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.http import Http404
+from rest_framework import generics, mixins
 
 from CBVapp.models import Course, CourseSerializer
 # Create your views here.
 
+
+class CourseListView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+    def get(self, request):
+        return self.list(request)
+    
+    def post(self, request):
+        return self.create(request)
+    
+
+class CourseDetailView(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+    def get(self, request, pk):
+        return self.retrieve(request, pk)
+    
+    def put(self, request, pk):
+        return self.update(request, pk)
+    
+    def delete(self, request, pk):
+        return self.destroy(request, pk)
+
+
+'''
 class CourseListView(APIView):
     def get(self, request):
         courses = Course.objects.all()
@@ -43,3 +71,5 @@ class CourseDetailView(APIView):
             serializer.save()
             return Response(serializer.data, status = status.HTTP_200_OK)  
         return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+
+'''
