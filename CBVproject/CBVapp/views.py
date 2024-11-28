@@ -9,6 +9,15 @@ from CBVapp.models import Course, CourseSerializer
 # Create your views here.
 
 
+class CourseListView(generics.ListCreateAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+class CourseDetailView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Course.objects.all()
+    serializer_class = CourseSerializer
+
+'''
 class CourseListView(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
@@ -33,6 +42,7 @@ class CourseDetailView(mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixin
     def delete(self, request, pk):
         return self.destroy(request, pk)
 
+'''
 
 '''
 class CourseListView(APIView):
