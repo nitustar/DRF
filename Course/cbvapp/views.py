@@ -4,11 +4,18 @@ from .models import Course
 from .serializers import CourseSerializer
 from rest_framework.viewsets import ModelViewSet
 
+from rest_framework.pagination import PageNumberPagination, LimitOffsetPagination
+
 # Create your views here.
+
+class CoursePagination(PageNumberPagination):
+    page_size = 2
 
 class CourseViewSet(ModelViewSet):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer
+    pagination_class = LimitOffsetPagination
+    # page_size = 2
 
 
 """
