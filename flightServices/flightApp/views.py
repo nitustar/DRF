@@ -46,7 +46,9 @@ class FlightViewset(viewsets.ModelViewSet):
 class PassengerViewset(viewsets.ModelViewSet):
     queryset = Passenger.objects.all()
     serializer_class = PassengerSerializer
+    permission_classes = (IsAuthenticated,)
 
 class ReservationViewset(viewsets.ModelViewSet):
     queryset = Reservation.objects.all()
     serializer_class = ReservationSerializer
+    permission_classes = (IsAuthenticated,)

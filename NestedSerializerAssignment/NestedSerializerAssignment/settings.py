@@ -133,3 +133,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+
+'''
+1.
+superuser: admin
+password: admin
+
+2.
+username: nitesh
+password: Django1234
+
+'''
